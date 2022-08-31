@@ -7,7 +7,7 @@ services:
       - ~/.aws/:/root/.aws:ro    #ro for read only
       - $PWD:/usr/src
     environment:
-      AWS_PROFILE: inferno-svc
+      AWS_PROFILE: default
       AWS_SHARED_CREDENTIALS_FILE: /root/.aws/credentials
       AWS_SDK_LOAD_CONFIG: 1
       GITHUB_PERSONAL_USERNAME: $GITHUB_PERSONAL_USERNAME

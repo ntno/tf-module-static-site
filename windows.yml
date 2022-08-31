@@ -9,7 +9,7 @@ services:
     environment: 
       AWS_HOME_FOR_DOCKER: "${AWS_HOME_FOR_DOCKER}"
       CURR_DIR_FOR_DOCKER: "${CURR_DIR_FOR_DOCKER}"
-      AWS_PROFILE: inferno-svc
+      AWS_PROFILE: default
       AWS_SHARED_CREDENTIALS_FILE: /root/.aws/credentials
       AWS_SDK_LOAD_CONFIG: 1
       GITHUB_PERSONAL_USERNAME: "${GITHUB_PERSONAL_USERNAME}"
