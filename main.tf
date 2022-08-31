@@ -12,10 +12,14 @@ resource "aws_s3_bucket_acl" "s3_bucket_acl" {
 # do we need to have a function that figures out the status value 
 # and run that before the resource is created?
 # my terraform is a bit rusty atm
+data "aws_s3_bucket" "s3_bucket" {
+  bucket = var.bucket_name
+}
+
 resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
   bucket = aws_s3_bucket.s3_bucket.id
   versioning_configuration {
-    status = var.enable_versioning ? "Enabled" : "Suspended"
+    status = var.enable_versioning ? "Enabled" : !data.aws_s3_bucket.s3_bucket ? "Disabled" : "Suspended"
   }
 }
 
@@ -70,7 +74,6 @@ resource "aws_s3_bucket" "s3_bucket" {
   tags          = var.tags
   force_destroy = true
 }
-
 
 resource "aws_s3_bucket_policy" "s3_bucket_policy" {
   bucket = aws_s3_bucket.s3_bucket.id
