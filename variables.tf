@@ -35,6 +35,6 @@ variable "known_ips" {
 
 variable "advanced_config" {
   description = "Map containing static web-site hosting or redirect configuration."
-  type        = map
+  type        = map(any)
   default     = {}
 }
