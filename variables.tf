@@ -21,10 +21,10 @@ variable "tags" {
   default     = {}
 }
 
-variable "enable_versioning" {
-  description = "Object versioning flag."
-  type        = bool
-  default     = true
+variable "versioning_state" {
+  description = "The versioning state of the bucket. Valid values: Enabled, Suspended, or Disabled.  While the parameter supports Disabled, this value is only intended for creating or importing resources that correspond to unversioned S3 buckets. Updating the value from Enabled or Suspended to Disabled will result in errors as the AWS S3 API does not support returning buckets to an unversioned state."
+  type        = string
+  default     = "Disabled"
 }
 
 variable "known_ips" {

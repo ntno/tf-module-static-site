@@ -3,23 +3,10 @@ resource "aws_s3_bucket_acl" "s3_bucket_acl" {
   acl    = "public-read"
 }
 
-# TODO 
-# status is Disabled if bucket is first created with versioning disabled
-# however if versioning was ever enabled, the status is Suspended if it is subsequently disabled
-# Disabled should only be used when creating or importing resources that correspond to unversioned S3 buckets
-# not sure yet how to handle this as part of a module
-# how to determine if the versioning config exists / has ever existed? 
-# do we need to have a function that figures out the status value 
-# and run that before the resource is created?
-# my terraform is a bit rusty atm
-data "aws_s3_bucket" "s3_bucket" {
-  bucket = var.bucket_name
-}
-
 resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
   bucket = aws_s3_bucket.s3_bucket.id
   versioning_configuration {
-    status = var.enable_versioning ? "Enabled" : !data.aws_s3_bucket.s3_bucket ? "Disabled" : "Suspended"
+    status = var.versioning_state
   }
 }
 
@@ -70,8 +57,9 @@ resource "aws_s3_bucket_website_configuration" "s3_bucket_website_configuration"
 }
 
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket        = var.bucket_name
-  tags          = var.tags
+  bucket = var.bucket_name
+  tags   = var.tags
+
   force_destroy = true
 }
 
