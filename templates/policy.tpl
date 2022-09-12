@@ -40,7 +40,7 @@
                 "s3:GetObjectVersion",
                 "s3:DeleteObjectVersion",
                 "s3:ListBucket",
-                "s3:ListBucketVersions",
+                "s3:ListBucketVersions"
             ],
             "Resource": [
                 "arn:aws:s3:::${bucket-name}",
