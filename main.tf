@@ -72,3 +72,21 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
     }
   )
 }
+
+resource "aws_s3_bucket" "www_subdomain_s3_bucket" {
+  bucket = format("www.%s", var.bucket_name)
+  tags   = var.tags
+
+  force_destroy = true
+}
+
+resource "aws_s3_bucket_website_configuration" "www_subdomain_s3_bucket_website_configuration" {
+  bucket = aws_s3_bucket.www_subdomain_s3_bucket.bucket
+
+  routing_rule {
+    redirect {
+      host_name = aws_s3_bucket_website_configuration.s3_bucket_website_configuration.website_endpoint
+      protocol  = "http"
+    }
+  }
+}
