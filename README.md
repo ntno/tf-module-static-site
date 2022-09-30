@@ -1,5 +1,6 @@
 # tf-module-static-site
-creates AWS infrastructure for HTTPS static website
+- creates AWS infrastructure for HTTPS static website
+- bucket name should include top level domain (.net, .com, etc.)
 
 example usage:   
 
