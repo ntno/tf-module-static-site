@@ -12,6 +12,7 @@ module "docs_site" {
   error_document    = "404.html"
   versioning_state  = "Enabled"
   bucket_name       = var.bucket_name
+  acm_certificate_arn = var.acm_certificate_arn
   tags              = local.global_tags
   advanced_config = {
     routing_rules = [

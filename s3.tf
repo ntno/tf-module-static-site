@@ -68,7 +68,6 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
   policy = templatefile("${path.module}/templates/policy.tpl",
     {
       bucket-name = var.bucket_name
-      known-ips   = var.known_ips
     }
   )
 }
