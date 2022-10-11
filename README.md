@@ -12,7 +12,6 @@ module "docs_site" {
   error_document    = "404.html"
   versioning_state  = "Enabled"
   bucket_name       = var.bucket_name
-  known_ips         = var.known_ips
   tags              = local.global_tags
   advanced_config = {
     routing_rules = [

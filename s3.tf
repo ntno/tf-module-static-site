@@ -81,7 +81,7 @@ resource "aws_s3_bucket" "www_subdomain_s3_bucket" {
 
 resource "aws_s3_bucket_website_configuration" "www_subdomain_s3_bucket_website_configuration" {
   bucket = aws_s3_bucket.www_subdomain_s3_bucket.bucket
-  
+
   redirect_all_requests_to {
     host_name = aws_s3_bucket_website_configuration.s3_bucket_website_configuration.website_endpoint
     protocol  = "http"
