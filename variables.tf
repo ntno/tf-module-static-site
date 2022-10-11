@@ -15,8 +15,13 @@ variable "bucket_name" {
   type        = string
 }
 
+variable "domain_name" {
+  description = "Domain name.  Must be owned by the AWS account."
+  type        = string
+}
+
 variable "acm_certificate_arn" {
-  description = "ARN for the ACM SSL certificate which matches the bucket name"
+  description = "ARN for the ACM SSL certificate which matches the domain name"
   type = string
 }
 
