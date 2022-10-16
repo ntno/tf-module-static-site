@@ -27,12 +27,6 @@ variable "versioning_state" {
   default     = "Disabled"
 }
 
-variable "known_ips" {
-  description = "List of IPs to allow access"
-  type        = list(string)
-  default     = []
-}
-
 variable "advanced_config" {
   description = "Map containing static web-site hosting or redirect configuration."
   type        = map(any)
