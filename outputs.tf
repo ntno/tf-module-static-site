@@ -1,28 +1,3 @@
-# output "arn" {
-#   description = "ARN of the content bucket"
-#   value       = aws_s3_bucket.s3_content_bucket.arn
-# }
-
-# output "name" {
-#   description = "Name (id) of the content bucket"
-#   value       = aws_s3_bucket.s3_content_bucket.id
-# }
-
-# output "website_domain" {
-#   description = "Domain name of the content bucket"
-#   value       = aws_s3_bucket.s3_content_bucket.website_domain
-# }
-
-# output "website_endpoint" {
-#   description = "Website endpoint of the content bucket"
-#   value = aws_s3_bucket_website_configuration.s3_content_bucket_website_configuration.website_endpoint
-# }
-
-# output "s3_url" {
-#   description = "S3 URL of the content bucket"
-#   value       = format("http://%s.%s", aws_s3_bucket.s3_content_bucket.id, aws_s3_bucket.s3_content_bucket.website_domain)
-# }
-
 output "content_bucket_info" {
   description = "Map containing the content bucket's arn, id, domain, website endpoint, and s3 url"
   value = {
