@@ -1,6 +1,8 @@
-resource "aws_cloudfront_distribution" "cloudfront_distribution" {
+resource "aws_cloudfront_distribution" "content_cloudfront_distribution" {
+  comment = format("distribute %s bucket as %s", var.bucket_name, var.domain_name)
+
   origin {
-    domain_name = var.domain_name
+    domain_name = aws_s3_bucket_website_configuration.s3_content_bucket_website_configuration.website_domain
     origin_id   = aws_s3_bucket_website_configuration.s3_content_bucket_website_configuration.website_endpoint
     custom_origin_config {
       http_port                = 80

@@ -20,12 +20,23 @@ output "www_subdomain_bucket_info" {
   }
 }
 
-output "cloudfront_distribution_info" {
-  description = "Map containing the cloudfront distribution's arn, id, domain name, hosted zone id"
+
+output "content_cloudfront_distribution_info" {
+  description = "Map containing the content cloudfront distribution's arn, id, domain name, hosted zone id"
   value = {
-    "arn"            = aws_cloudfront_distribution.cloudfront_distribution.arn
-    "id"             = aws_cloudfront_distribution.cloudfront_distribution.id
-    "domain_name"    = aws_cloudfront_distribution.cloudfront_distribution.domain_name
-    "hosted_zone_id" = aws_cloudfront_distribution.cloudfront_distribution.hosted_zone_id
+    "arn"            = aws_cloudfront_distribution.content_cloudfront_distribution.arn
+    "id"             = aws_cloudfront_distribution.content_cloudfront_distribution.id
+    "domain_name"    = aws_cloudfront_distribution.content_cloudfront_distribution.domain_name
+    "hosted_zone_id" = aws_cloudfront_distribution.content_cloudfront_distribution.hosted_zone_id
+  }
+}
+
+output "route53_hosted_zone_info" {
+  description = "Map containing the hosted zone's arn, zone_id, name_servers, record set count"
+  value = {
+    "arn"                       = data.aws_route53_zone.hosted_zone.arn
+    "zone_id"                   = data.aws_route53_zone.hosted_zone.zone_id
+    "name_servers"              = data.aws_route53_zone.hosted_zone.name_servers
+    "resource_record_set_count" = data.aws_route53_zone.hosted_zone.resource_record_set_count
   }
 }
