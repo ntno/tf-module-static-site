@@ -6,8 +6,9 @@
 example usage:   
 
 ```
+# update x.x.x to desired version
 module "docs_site" {
-  source = "git::https://github.com/ntno/tf-module-static-site?ref=0.0.0"
+  source = "git::https://github.com/ntno/tf-module-static-site?ref=x.x.x"
   index_document    = "index.html"
   error_document    = "404.html"
   versioning_state  = "Enabled"

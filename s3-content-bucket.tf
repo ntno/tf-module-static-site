@@ -1,17 +1,17 @@
 resource "aws_s3_bucket_acl" "s3_bucket_acl" {
-  bucket = aws_s3_bucket.s3_bucket.id
+  bucket = aws_s3_bucket.s3_content_bucket.id
   acl    = "public-read"
 }
 
-resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
-  bucket = aws_s3_bucket.s3_bucket.id
+resource "aws_s3_bucket_versioning" "s3_content_bucket_versioning" {
+  bucket = aws_s3_bucket.s3_content_bucket.id
   versioning_configuration {
     status = var.versioning_state
   }
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "s3_bucket_server_side_encryption" {
-  bucket = aws_s3_bucket.s3_bucket.id
+resource "aws_s3_bucket_server_side_encryption_configuration" "s3_content_bucket_server_side_encryption" {
+  bucket = aws_s3_bucket.s3_content_bucket.id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -21,8 +21,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "s3_bucket_server_
   }
 }
 
-resource "aws_s3_bucket_website_configuration" "s3_bucket_website_configuration" {
-  bucket = aws_s3_bucket.s3_bucket.bucket
+resource "aws_s3_bucket_website_configuration" "s3_content_bucket_website_configuration" {
+  bucket = aws_s3_bucket.s3_content_bucket.bucket
 
   index_document {
     suffix = var.index_document
@@ -56,33 +56,18 @@ resource "aws_s3_bucket_website_configuration" "s3_bucket_website_configuration"
   }
 }
 
-resource "aws_s3_bucket" "s3_bucket" {
+resource "aws_s3_bucket" "s3_content_bucket" {
   bucket = var.bucket_name
   tags   = var.tags
 
   force_destroy = true
 }
 
-resource "aws_s3_bucket_policy" "s3_bucket_policy" {
-  bucket = aws_s3_bucket.s3_bucket.id
+resource "aws_s3_bucket_policy" "s3_content_bucket_policy" {
+  bucket = aws_s3_bucket.s3_content_bucket.id
   policy = templatefile("${path.module}/templates/policy.tpl",
     {
       bucket-name = var.bucket_name
     }
   )
-}
-
-resource "aws_s3_bucket" "www_subdomain_s3_bucket" {
-  bucket        = local.www_subdomain
-  tags          = var.tags
-  force_destroy = true
-}
-
-resource "aws_s3_bucket_website_configuration" "www_subdomain_s3_bucket_website_configuration" {
-  bucket = aws_s3_bucket.www_subdomain_s3_bucket.bucket
-
-  redirect_all_requests_to {
-    host_name = aws_s3_bucket_website_configuration.s3_bucket_website_configuration.website_endpoint
-    protocol  = "http"
-  }
 }
