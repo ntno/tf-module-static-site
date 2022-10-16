@@ -22,7 +22,7 @@ variable "domain_name" {
 
 variable "acm_certificate_arn" {
   description = "ARN for the ACM SSL certificate which matches the domain name"
-  type = string
+  type        = string
 }
 
 variable "tags" {
