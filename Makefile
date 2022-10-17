@@ -24,6 +24,11 @@ ifeq ($(platform), "unix")
 	docker-compose -f $(platform).yml run --rm $(platform)
 endif 
 
+validate: 
+	terraform init
+	terraform fmt
+	terraform validate
+
 check-platform:
 ifndef platform
 	$(error platform is not defined)
