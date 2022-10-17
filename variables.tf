@@ -15,13 +15,13 @@ variable "domain_name" {
   type        = string
 }
 
-variable "domain_name" {
-  description = "Domain name.  Must be owned by the AWS account."
+variable "domain_acm_certificate_arn" {
+  description = "ARN for the ACM SSL certificate which matches the domain name"
   type        = string
 }
 
-variable "acm_certificate_arn" {
-  description = "ARN for the ACM SSL certificate which matches the domain name"
+variable "subdomain_acm_certificate_arn" {
+  description = "ARN for the ACM SSL certificate which matches the www subdomain name"
   type        = string
 }
 

@@ -1,12 +1,12 @@
 locals {
-  domain_for_cloudfront_content_distribution = aws_s3_bucket_website_configuration.s3_content_bucket_website_configuration.website_endpoint
+  subdomain_for_cloudfront_content_distribution = aws_s3_bucket_website_configuration.s3_www_subdomain_bucket_website_configuration.website_endpoint
 }
 
-resource "aws_cloudfront_distribution" "content_cloudfront_distribution" {
-  comment = format("distribute '%s' s3 bucket as https://%s", var.domain_name, var.domain_name)
+resource "aws_cloudfront_distribution" "www_subdomain_cloudfront_distribution" {
+  comment = format("distribute '%s' s3 bucket as https://%s", local.www_subdomain, local.www_subdomain)
   origin {
-    domain_name = local.domain_for_cloudfront_content_distribution
-    origin_id   = var.domain_name
+    domain_name = local.subdomain_for_cloudfront_content_distribution
+    origin_id   = local.www_subdomain
     custom_origin_config {
       http_port              = 80
       https_port             = 443
@@ -20,7 +20,7 @@ resource "aws_cloudfront_distribution" "content_cloudfront_distribution" {
   }
 
 
-  aliases         = [var.domain_name]
+  aliases         = [local.www_subdomain]
   tags            = var.tags
   enabled         = true
   is_ipv6_enabled = false
@@ -29,7 +29,7 @@ resource "aws_cloudfront_distribution" "content_cloudfront_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = var.domain_name
+    target_origin_id = local.www_subdomain
     compress         = true
 
     viewer_protocol_policy = "redirect-to-https"
@@ -47,6 +47,6 @@ resource "aws_cloudfront_distribution" "content_cloudfront_distribution" {
     cloudfront_default_certificate = false
     minimum_protocol_version       = "TLSv1.2_2021"
     ssl_support_method             = "sni-only"
-    acm_certificate_arn            = var.domain_acm_certificate_arn
+    acm_certificate_arn            = var.subdomain_acm_certificate_arn
   }
 }
