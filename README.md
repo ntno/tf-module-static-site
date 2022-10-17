@@ -44,5 +44,5 @@ module "docs_site" {
 ```
 
 ### see also
-https://github.com/terraform-aws-modules/terraform-aws-s3-bucket/  
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html  
+- https://github.com/terraform-aws-modules/terraform-aws-s3-bucket/  
+- https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html  
