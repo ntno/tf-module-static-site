@@ -1,7 +1,12 @@
 # tf-module-static-site
-- creates AWS infrastructure for HTTPS static website
-- bucket name should include top level domain (site.com)
-- bucket name should NOT include www subdomain (NOT www.site.com)
+creates AWS infrastructure for HTTPS static website  
+
+for variable `domain_name` = "site.com" this module will create:  
+- S3 bucket site.com (with static website config)
+- S3 bucket www.site.com (with redirect to site.com static website config)
+- cloudfront distribution for the site.com s3 bucket
+- cloudfront distribution for the www.site.com s3 bucket
+- route53 alias records pointing to the cloudfront distributions
 
 ## prerequisites
 - register custom domain name for site  (site.com)
