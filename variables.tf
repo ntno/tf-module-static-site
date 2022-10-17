@@ -10,8 +10,8 @@ variable "error_document" {
   description = "An absolute path to the document to return in case of a 4XX error"
 }
 
-variable "bucket_name" {
-  description = "Name of the s3 bucket. Must be unique."
+variable "domain_name" {
+  description = "Domain name.  Must be owned by the AWS account.  Must be unique in S3"
   type        = string
 }
 

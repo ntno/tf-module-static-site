@@ -10,7 +10,7 @@ module "docs_site" {
   index_document    = "index.html"
   error_document    = "404.html"
   versioning_state  = "Enabled"
-  bucket_name       = var.bucket_name
+  domain_name       = var.bucket_name
   tags              = local.global_tags
   advanced_config = {
     routing_rules = [
