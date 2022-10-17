@@ -22,7 +22,6 @@ output "www_subdomain_bucket_info" {
   }
 } 
 
-
 output "route53_hosted_zone_info" {
   description = "Map containing the hosted zone's arn, zone_id, name_servers"
   value = {
