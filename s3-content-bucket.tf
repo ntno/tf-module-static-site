@@ -57,7 +57,7 @@ resource "aws_s3_bucket_website_configuration" "s3_content_bucket_website_config
 }
 
 resource "aws_s3_bucket" "s3_content_bucket" {
-  bucket = var.bucket_name
+  bucket = var.domain_name
   tags   = var.tags
 
   force_destroy = true
@@ -67,7 +67,7 @@ resource "aws_s3_bucket_policy" "s3_content_bucket_policy" {
   bucket = aws_s3_bucket.s3_content_bucket.id
   policy = templatefile("${path.module}/templates/policy.tpl",
     {
-      bucket-name = var.bucket_name
+      bucket-name = var.domain_name
     }
   )
 }
