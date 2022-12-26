@@ -1,5 +1,5 @@
 # tf-module-static-site
-creates AWS infrastructure for HTTPS static website  
+creates AWS infrastructure for HTTPS static website.  compatible with [ntno/tf-module-static-site-cicd](https://github.com/ntno/tf-module-static-site-cicd).
 
 for variable `domain_name` = "site.com" this module will create:  
 - S3 bucket site.com (with static website config)
@@ -14,7 +14,8 @@ for variable `domain_name` = "site.com" this module will create:
 - request ACM certificate for www subdomain  (*.site.com)
 - verify ACM certificates by adding CNAME record to custom domain hosted zone (use console wizard for this)
 
-## example usage:   
+## example usage:
+
 
 ```
 # update x.x.x to desired version
@@ -44,5 +45,8 @@ module "docs_site" {
 ```
 
 ### see also
+- [ntno/tf-module-static-site-cicd](https://github.com/ntno/tf-module-static-site-cicd)
+
+### references
 - https://github.com/terraform-aws-modules/terraform-aws-s3-bucket/  
 - https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html  
